@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -16,28 +18,44 @@ namespace lab1
         public Form1()
         {
             InitializeComponent();
-            listView1.FullRowSelect = true;
+            listNews.FullRowSelect = true;
+            Type type = listNews.GetType();
+            PropertyInfo propertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance);
+            propertyInfo.SetValue(listNews, true, null);
+
+            getNews();
         }
         NewsRecipient NewsRecipient;
 
-        private void listView1_DoubleClick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-            Process.Start(NewsRecipient.articles[Int32.Parse(listView1.SelectedItems[0].Text)].link);
+            getNews();
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void listNews_DoubleClick(object sender, EventArgs e)
+        {
+            Process.Start(NewsRecipient.articles[Int32.Parse(listNews.SelectedItems[0].Text)].link);
+        }
+
+        private async void getNews()
         {
             try
             {
                 string url = "https://news.tut.by/rss/index.rss";
                 NewsRecipient = new NewsRecipient(url);
-                NewsRecipient.GetXmlNews();
-                NewsRecipient.ReadXml();
-                int i = 0;
-                foreach (News article in NewsRecipient.articles)
+                if (await NewsRecipient.GetXmlNews())
                 {
-                    ListViewItem item = new ListViewItem(new string[] { (i++).ToString(), article.date, article.title });
-                    listView1.Items.Add(item);
+                    if (await NewsRecipient.ReadXml())
+                    {
+                        listNews.Items.Clear();
+                        labelTime.Text = "Последнее обновление " + DateTime.Now.ToString();
+                        int i = 0;
+                        foreach (News article in NewsRecipient.articles)
+                        {
+                            ListViewItem item = new ListViewItem(new string[] { (++i).ToString(), article.date, article.title });
+                            listNews.Items.Add(item);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -78,7 +96,7 @@ namespace lab1
             this.url = url;
         }
 
-        public bool GetXmlNews()
+        public Task<bool> GetXmlNews()
         {
             try
             {
@@ -89,16 +107,16 @@ namespace lab1
                 doc.Load(xtr);
                 XmlNode root = doc.DocumentElement;
                 nodeList = root.ChildNodes;
-                return true;
+                return Task.Run(() => true);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return false;
+                return Task.Run(() => false);
             }
         }
 
-        public bool ReadXml()
+        public Task<bool> ReadXml()
         {
             try
             {
@@ -134,12 +152,12 @@ namespace lab1
                         }
                     }
                 }
-                return true;
+                return Task.Run(() => true);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return false;
+                return Task.Run(() => false);
             }
         }
     }
