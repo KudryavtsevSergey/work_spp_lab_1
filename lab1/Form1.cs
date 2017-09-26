@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace lab1
 {
@@ -17,19 +18,25 @@ namespace lab1
             InitializeComponent();
             listView1.FullRowSelect = true;
         }
+        NewsRecipient NewsRecipient;
 
-        List<Data> dataList = new List<Data>();
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            Process.Start(NewsRecipient.articles[Int32.Parse(listView1.SelectedItems[0].Text)].link);
+        }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                string url = "https://www.tut.by/";
-                HtmlParser parser = new HtmlParser(url);
-                dataList = parser.getData();
-                foreach (Data data in dataList)
+                string url = "https://news.tut.by/rss/index.rss";
+                NewsRecipient = new NewsRecipient(url);
+                NewsRecipient.GetXmlNews();
+                NewsRecipient.ReadXml();
+                int i = 0;
+                foreach (News article in NewsRecipient.articles)
                 {
-                    ListViewItem item = new ListViewItem(new string[] { data.id.ToString(), data.date, data.name});
+                    ListViewItem item = new ListViewItem(new string[] { (i++).ToString(), article.date, article.title });
                     listView1.Items.Add(item);
                 }
             }
@@ -38,68 +45,102 @@ namespace lab1
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
-            Process.Start(dataList[Int32.Parse(listView1.SelectedItems[0].Text)].link);
-        }
     }
-
-    public struct Data
+    public class News
     {
-        public int id;
-        public string date;
-        public string name;
+        public string title;
         public string link;
+        public string description;
+        public string date;
+
+        public News()
+        {
+            title = "";
+            link = "";
+            description = "";
+            date = "";
+        }
     }
 
-    public class HtmlParser
+    public class NewsRecipient
     {
-        private List<Data> dataList = new List<Data>();
-
+        public List<News> articles = new List<News>();
         private string url;
-        private string html;
+        private XmlNodeList nodeList;
 
-        public HtmlParser()
+        public NewsRecipient()
         {
-            this.url = "https://www.tut.by/";
+            this.url = "https://news.tut.by/rss/index.rss";
         }
 
-        public HtmlParser(string url)
+        public NewsRecipient(string url)
         {
             this.url = url;
         }
 
-        public List<Data> getData()
+        public bool GetXmlNews()
         {
-            Data item;
-
-            HttpWebRequest myHttpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
-            HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-            StreamReader myStreamReader = new StreamReader(myHttpWebResponse.GetResponseStream());
-            html = myStreamReader.ReadToEnd();
-            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(html);
-            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("//div[@id='latest']");
-            doc.LoadHtml(bodyNode.InnerHtml);
-            HtmlNodeCollection collection = doc.DocumentNode.SelectNodes("//a[@class='entry__link io-block-link']");
-
-            if (collection != null)
+            try
             {
-                int id = 0;
-                foreach (HtmlNode node in collection)
-                {
-                    id++;
-                    string pattern = "href=\"(.*)\" class";
-                    Match match = Regex.Match(node.OuterHtml, pattern);
-                    item.id = id;
-                    item.link = match.Groups[1].ToString();
-                    item.name = node.ChildNodes[0].ChildNodes[1].InnerText;
-                    item.date = node.ChildNodes[0].ChildNodes[0].ChildNodes[0].InnerText.Replace("&nbsp;", "");
-                    dataList.Add(item);
-                }
+                WebRequest wr = WebRequest.Create(url);
+                wr.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                XmlTextReader xtr = new XmlTextReader(wr.GetResponse().GetResponseStream());
+                XmlDocument doc = new XmlDocument();
+                doc.Load(xtr);
+                XmlNode root = doc.DocumentElement;
+                nodeList = root.ChildNodes;
+                return true;
             }
-            return dataList;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public bool ReadXml()
+        {
+            try
+            {
+                foreach (XmlNode chanel in nodeList)
+                {
+                    foreach (XmlNode chanel_item in chanel)
+                    {
+                        if (chanel_item.Name == "item")
+                        {
+                            XmlNodeList itemsList = chanel_item.ChildNodes;
+                            News article = new News();
+
+                            foreach (XmlNode item in itemsList)
+                            {
+                                if (item.Name == "title")
+                                {
+                                    article.title = item.InnerText;
+                                }
+                                else if (item.Name == "link")
+                                {
+                                    article.link = item.InnerText;
+                                }
+                                else if (item.Name == "description")
+                                {
+                                    article.description = item.InnerText;
+                                }
+                                else if (item.Name == "pubDate")
+                                {
+                                    article.date = item.InnerText;
+                                }
+                            }
+                            articles.Add(article);
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
     }
 }
