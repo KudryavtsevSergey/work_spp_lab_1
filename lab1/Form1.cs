@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -27,7 +28,7 @@ namespace lab1
         }
         NewsRecipient NewsRecipient;
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void timer_TickAsync(object sender, EventArgs e)
         {
             getNews();
         }
@@ -41,21 +42,30 @@ namespace lab1
         {
             try
             {
-                string url = "https://news.tut.by/rss/index.rss";
-                NewsRecipient = new NewsRecipient(url);
-                if (await NewsRecipient.GetXmlNews())
+                Func<List<ListViewItem>> a = () =>
                 {
-                    if (await NewsRecipient.ReadXml())
+                    List<ListViewItem> lst = new List<ListViewItem>();
+                    string url = "https://news.tut.by/rss/index.rss";
+                    NewsRecipient = new NewsRecipient(url);
+                    if (NewsRecipient.GetXmlNews())
                     {
-                        listNews.Items.Clear();
-                        labelTime.Text = "Последнее обновление " + DateTime.Now.ToString();
-                        int i = 0;
-                        foreach (News article in NewsRecipient.articles)
+                        if (NewsRecipient.ReadXml())
                         {
-                            ListViewItem item = new ListViewItem(new string[] { (++i).ToString(), article.date, article.title });
-                            listNews.Items.Add(item);
+                            listNews.Items.Clear();
+                            int i = 0;
+                            foreach (News article in NewsRecipient.articles)
+                            {
+                                ListViewItem item = new ListViewItem(new string[] { (++i).ToString(), article.date, article.title });
+                                lst.Add(item);
+                            }
                         }
                     }
+                    return lst;
+                };
+                labelTime.Text = "Последнее обновление " + DateTime.Now.ToString();
+                foreach( ListViewItem item in await Task<List<ListViewItem>>.Factory.StartNew(a))
+                {
+                    listNews.Items.Add(item);
                 }
             }
             catch (Exception ex)
@@ -96,7 +106,7 @@ namespace lab1
             this.url = url;
         }
 
-        public Task<bool> GetXmlNews()
+        public bool GetXmlNews()
         {
             try
             {
@@ -107,16 +117,16 @@ namespace lab1
                 doc.Load(xtr);
                 XmlNode root = doc.DocumentElement;
                 nodeList = root.ChildNodes;
-                return Task.Run(() => true);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return Task.Run(() => false);
+                return false;
             }
         }
 
-        public Task<bool> ReadXml()
+        public bool ReadXml()
         {
             try
             {
@@ -152,12 +162,12 @@ namespace lab1
                         }
                     }
                 }
-                return Task.Run(() => true);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return Task.Run(() => false);
+                return false;
             }
         }
     }
