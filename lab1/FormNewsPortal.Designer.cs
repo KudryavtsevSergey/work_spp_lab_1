@@ -1,6 +1,6 @@
 ﻿namespace lab1
 {
-    partial class Form1
+    partial class FormNewsPortal
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -98,14 +98,14 @@
             this.panel1.Size = new System.Drawing.Size(942, 391);
             this.panel1.TabIndex = 3;
             // 
-            // Form1
+            // FormNewsPortal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 421);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelTime);
-            this.Name = "Form1";
+            this.Name = "FormNewsPortal";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
