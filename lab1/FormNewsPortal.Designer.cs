@@ -36,6 +36,8 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.labelTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.buttonSendEmail = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +75,7 @@
             // timer
             // 
             this.timer.Enabled = true;
-            this.timer.Interval = 10000;
+            this.timer.Interval = 60000;
             this.timer.Tick += new System.EventHandler(this.timer_TickAsync);
             // 
             // labelTime
@@ -98,11 +100,31 @@
             this.panel1.Size = new System.Drawing.Size(942, 391);
             this.panel1.TabIndex = 3;
             // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Location = new System.Drawing.Point(598, 4);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(251, 20);
+            this.textBoxEmail.TabIndex = 4;
+            this.textBoxEmail.Text = "s.kudryavtsev@travelsoft.by";
+            // 
+            // buttonSendEmail
+            // 
+            this.buttonSendEmail.Location = new System.Drawing.Point(855, 2);
+            this.buttonSendEmail.Name = "buttonSendEmail";
+            this.buttonSendEmail.Size = new System.Drawing.Size(75, 23);
+            this.buttonSendEmail.TabIndex = 5;
+            this.buttonSendEmail.Text = "Send";
+            this.buttonSendEmail.UseVisualStyleBackColor = true;
+            this.buttonSendEmail.Click += new System.EventHandler(this.buttonSendEmail_Click);
+            // 
             // FormNewsPortal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 421);
+            this.Controls.Add(this.buttonSendEmail);
+            this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelTime);
             this.Name = "FormNewsPortal";
@@ -121,6 +143,8 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.Button buttonSendEmail;
     }
 }
 

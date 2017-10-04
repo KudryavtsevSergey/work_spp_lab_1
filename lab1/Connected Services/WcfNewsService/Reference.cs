@@ -121,6 +121,12 @@ namespace lab1.WcfNewsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/getNewsSerialaized", ReplyAction="http://tempuri.org/IServiceNews/getNewsSerialaizedResponse")]
         System.Threading.Tasks.Task<string> getNewsSerialaizedAsync(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/SendEmailAsync", ReplyAction="http://tempuri.org/IServiceNews/SendEmailAsyncResponse")]
+        void SendEmailAsync(lab1.WcfNewsService.News article, string receiversAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/SendEmailAsync", ReplyAction="http://tempuri.org/IServiceNews/SendEmailAsyncResponse")]
+        System.Threading.Tasks.Task SendEmailAsyncAsync(lab1.WcfNewsService.News article, string receiversAddress);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -164,6 +170,14 @@ namespace lab1.WcfNewsService {
         
         public System.Threading.Tasks.Task<string> getNewsSerialaizedAsync(string url) {
             return base.Channel.getNewsSerialaizedAsync(url);
+        }
+        
+        public void SendEmailAsync(lab1.WcfNewsService.News article, string receiversAddress) {
+            base.Channel.SendEmailAsync(article, receiversAddress);
+        }
+        
+        public System.Threading.Tasks.Task SendEmailAsyncAsync(lab1.WcfNewsService.News article, string receiversAddress) {
+            return base.Channel.SendEmailAsyncAsync(article, receiversAddress);
         }
     }
 }

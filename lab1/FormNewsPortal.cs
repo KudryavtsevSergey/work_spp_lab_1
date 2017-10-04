@@ -103,5 +103,24 @@ namespace lab1
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void buttonSendEmail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listNews.SelectedIndices.Count > 0)
+                {
+                    client.SendEmailAsync(listNewsRecieve[Int32.Parse(listNews.SelectedItems[0].Text)], textBoxEmail.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Не выделены элементы!");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
