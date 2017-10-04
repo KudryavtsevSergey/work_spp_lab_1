@@ -13,16 +13,35 @@
   <wsdl:message name="IServiceNews_getNews_OutputMessage">
     <wsdl:part name="parameters" element="tns:getNewsResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceNews_getNewsSerialaized_InputMessage">
+    <wsdl:part name="parameters" element="tns:getNewsSerialaized" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNews_getNewsSerialaized_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getNewsSerialaizedResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceNews">
     <wsdl:operation name="getNews">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceNews/getNews" message="tns:IServiceNews_getNews_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceNews/getNewsResponse" message="tns:IServiceNews_getNews_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getNewsSerialaized">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceNews/getNewsSerialaized" message="tns:IServiceNews_getNewsSerialaized_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceNews/getNewsSerialaizedResponse" message="tns:IServiceNews_getNewsSerialaized_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceNews" type="tns:IServiceNews">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getNews">
       <soap:operation soapAction="http://tempuri.org/IServiceNews/getNews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNewsSerialaized">
+      <soap:operation soapAction="http://tempuri.org/IServiceNews/getNewsSerialaized" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -115,6 +115,12 @@ namespace lab1.WcfNewsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/getNews", ReplyAction="http://tempuri.org/IServiceNews/getNewsResponse")]
         System.Threading.Tasks.Task<lab1.WcfNewsService.News[]> getNewsAsync(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/getNewsSerialaized", ReplyAction="http://tempuri.org/IServiceNews/getNewsSerialaizedResponse")]
+        string getNewsSerialaized(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/getNewsSerialaized", ReplyAction="http://tempuri.org/IServiceNews/getNewsSerialaizedResponse")]
+        System.Threading.Tasks.Task<string> getNewsSerialaizedAsync(string url);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -150,6 +156,14 @@ namespace lab1.WcfNewsService {
         
         public System.Threading.Tasks.Task<lab1.WcfNewsService.News[]> getNewsAsync(string url) {
             return base.Channel.getNewsAsync(url);
+        }
+        
+        public string getNewsSerialaized(string url) {
+            return base.Channel.getNewsSerialaized(url);
+        }
+        
+        public System.Threading.Tasks.Task<string> getNewsSerialaizedAsync(string url) {
+            return base.Channel.getNewsSerialaizedAsync(url);
         }
     }
 }
