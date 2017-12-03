@@ -128,7 +128,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelTime);
             this.Name = "FormNewsPortal";
-            this.Text = "Form1";
+            this.Text = "News";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNewsPortal_FormClosing);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

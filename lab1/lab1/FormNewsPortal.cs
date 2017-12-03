@@ -122,5 +122,11 @@ namespace lab1
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void FormNewsPortal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            client.Close();
+            timer.Stop();
+        }
     }
 }
