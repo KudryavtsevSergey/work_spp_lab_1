@@ -1,7 +1,0 @@
-E:\Работы\СПП\WcfNewsService\WcfNewsService\bin\WcfNewsService.dll.config
-E:\Работы\СПП\WcfNewsService\WcfNewsService\bin\WcfNewsService.dll
-E:\Работы\СПП\WcfNewsService\WcfNewsService\bin\WcfNewsService.pdb
-E:\Работы\СПП\WcfNewsService\WcfNewsService\obj\Debug\WcfNewsService.csprojResolveAssemblyReference.cache
-E:\Работы\СПП\WcfNewsService\WcfNewsService\obj\Debug\WcfNewsService.csproj.CoreCompileInputs.cache
-E:\Работы\СПП\WcfNewsService\WcfNewsService\obj\Debug\WcfNewsService.dll
-E:\Работы\СПП\WcfNewsService\WcfNewsService\obj\Debug\WcfNewsService.pdb

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a261413a-9ed6-4900-81a7-7e3c03c20cb3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:54524/ServiceNews.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceNews.xsd" MetadataType="Schema" ID="63559b09-105c-4ee4-994a-0c6569f4debd" SourceId="1" SourceUrl="http://localhost:54524/ServiceNews.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceNews.wsdl" MetadataType="Wsdl" ID="a4345bb2-bdd0-4673-8a9b-0ef1d26d410e" SourceId="1" SourceUrl="http://localhost:54524/ServiceNews.svc?wsdl" />
+    <MetadataFile FileName="ServiceNews1.xsd" MetadataType="Schema" ID="b483c0e5-76f5-4a1a-a0b6-fd5834bf4661" SourceId="1" SourceUrl="http://localhost:54524/ServiceNews.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceNews2.xsd" MetadataType="Schema" ID="9b91dfdb-f219-4ef5-b2d3-8ebb4aaa86d4" SourceId="1" SourceUrl="http://localhost:54524/ServiceNews.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceNews.disco" MetadataType="Disco" ID="35e634d3-aa5f-45a7-af2f-f0601b03fa20" SourceId="1" SourceUrl="http://localhost:54524/ServiceNews.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

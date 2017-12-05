@@ -5,13 +5,14 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using lab1.ServiceNews;
 
 namespace lab1
 {
     public partial class FormNewsPortal : Form
     {
-        WcfNewsService.ServiceNewsClient client = new WcfNewsService.ServiceNewsClient();
-        WcfNewsService.News[] listNewsRecieve;
+        private static ServiceNewsClient client = new ServiceNewsClient();
+        News[] listNewsRecieve;
 
         public FormNewsPortal()
         {
@@ -21,11 +22,11 @@ namespace lab1
             PropertyInfo propertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance);
             propertyInfo.SetValue(listNews, true, null);
 
-            getSerializedNews();
+            GetNews(true);
         }
         private void timer_TickAsync(object sender, EventArgs e)
         {
-            getSerializedNews();
+            GetNews(true);
         }
 
         private void listNews_DoubleClick(object sender, EventArgs e)
@@ -33,62 +34,38 @@ namespace lab1
             Process.Start(listNewsRecieve[Int32.Parse(listNews.SelectedItems[0].Text)].LinkValue);
         }
 
-        private async void getNews()
+        Func<string, bool, News[]> a = (url, serialize) =>
         {
             try
             {
-                Func<WcfNewsService.News[]> a = () =>
+                if (serialize)
                 {
-                    try
+                    using (Stream stream = new MemoryStream())
                     {
-                        string url = "https://news.tut.by/rss/index.rss";
-                        return client.getNews(url);
+                        byte[] data = System.Text.Encoding.UTF8.GetBytes(client.GetNewsSerialaized(url));
+                        stream.Write(data, 0, data.Length);
+                        stream.Position = 0;
+                        var dataContractSerializer = new DataContractSerializer(typeof(News[]));
+                        return (News[])dataContractSerializer.ReadObject(stream);
                     }
-                    catch (Exception)
-                    {
-                        return null;
-                    }
-                };
-                if((listNewsRecieve = await Task<WcfNewsService.News[]>.Factory.StartNew(a)) != null)
-                {
-                    labelTime.Text = "Последнее обновление " + DateTime.Now.ToString();
-                    listNews.Items.Clear();
                 }
-                for (int i = 0; i < listNewsRecieve.Length; i++)
+                else
                 {
-                    listNews.Items.Add(new ListViewItem(new string[] { (i + 1).ToString(), listNewsRecieve[i].DateValue, listNewsRecieve[i].TitleValue }));
+                    return client.GetNews(url);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new Exception(ex.Message);
             }
-        }
+        };
 
-        private async void getSerializedNews()
+        private async void GetNews(bool serialize)
         {
             try
             {
-                Func<WcfNewsService.News[]> a = () =>
-                {
-                    try
-                    {
-                        string url = "https://news.tut.by/rss/index.rss";
-                        using (Stream stream = new MemoryStream())
-                        {
-                            byte[] data = System.Text.Encoding.UTF8.GetBytes(client.getNewsSerialaized(url));
-                            stream.Write(data, 0, data.Length);
-                            stream.Position = 0;
-                            var dataContractSerializer = new DataContractSerializer(typeof(WcfNewsService.News[]));
-                            return (WcfNewsService.News[])dataContractSerializer.ReadObject(stream);
-                        }
-                    }
-                    catch(Exception)
-                    {
-                        return null;
-                    }
-                };
-                if((listNewsRecieve = await Task<WcfNewsService.News[]>.Factory.StartNew(a)) != null)
+                string url = "https://news.tut.by/rss/index.rss";
+                if ((listNewsRecieve = await Task.Factory.StartNew(() => a(url, serialize))) != null)
                 {
                     labelTime.Text = "Последнее обновление " + DateTime.Now.ToString();
                     listNews.Items.Clear();
@@ -117,7 +94,7 @@ namespace lab1
                     MessageBox.Show("Не выделены элементы!");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

@@ -1,0 +1,7 @@
+E:\Работы\СПП\lab1\NewsService\NewsService\bin\NewsService.dll.config
+E:\Работы\СПП\lab1\NewsService\NewsService\bin\NewsService.dll
+E:\Работы\СПП\lab1\NewsService\NewsService\bin\NewsService.pdb
+E:\Работы\СПП\lab1\NewsService\NewsService\obj\Debug\NewsService.csprojResolveAssemblyReference.cache
+E:\Работы\СПП\lab1\NewsService\NewsService\obj\Debug\NewsService.csproj.CoreCompileInputs.cache
+E:\Работы\СПП\lab1\NewsService\NewsService\obj\Debug\NewsService.dll
+E:\Работы\СПП\lab1\NewsService\NewsService\obj\Debug\NewsService.pdb

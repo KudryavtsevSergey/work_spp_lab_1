@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\WcfNewsService\Reference.cs">
+    <Compile Include="Connected Services\ServiceNews\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -72,17 +72,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Connected Services\WcfNewsService\lab1.WcfNewsService.News.datasource">
+    <None Include="Connected Services\ServiceNews\lab1.ServiceNews.News.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNewsService\Service1.wsdl" />
-    <None Include="Connected Services\WcfNewsService\Service1.xsd">
+    <None Include="Connected Services\ServiceNews\ServiceNews.wsdl" />
+    <None Include="Connected Services\ServiceNews\ServiceNews.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\WcfNewsService\Service11.xsd">
+    <None Include="Connected Services\ServiceNews\ServiceNews1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\WcfNewsService\Service12.xsd">
+    <None Include="Connected Services\ServiceNews\ServiceNews2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -104,19 +104,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\WcfNewsService\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceNews\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNewsService\Service1.disco" />
+    <None Include="Connected Services\ServiceNews\ServiceNews.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNewsService\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceNews\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNewsService\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceNews\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNewsService\Reference.svcmap">
+    <None Include="Connected Services\ServiceNews\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
