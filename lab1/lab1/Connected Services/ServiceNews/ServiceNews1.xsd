@@ -4,7 +4,7 @@
   <xs:element name="GetNews">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="uri" nillable="true" type="xs:anyURI" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -18,7 +18,7 @@
   <xs:element name="GetNewsSerialaized">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="uri" nillable="true" type="xs:anyURI" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

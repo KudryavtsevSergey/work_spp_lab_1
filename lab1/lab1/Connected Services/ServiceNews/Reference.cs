@@ -111,16 +111,16 @@ namespace lab1.ServiceNews {
     public interface IServiceNews {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/GetNews", ReplyAction="http://tempuri.org/IServiceNews/GetNewsResponse")]
-        lab1.ServiceNews.News[] GetNews(string url);
+        lab1.ServiceNews.News[] GetNews(System.Uri uri);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/GetNews", ReplyAction="http://tempuri.org/IServiceNews/GetNewsResponse")]
-        System.Threading.Tasks.Task<lab1.ServiceNews.News[]> GetNewsAsync(string url);
+        System.Threading.Tasks.Task<lab1.ServiceNews.News[]> GetNewsAsync(System.Uri uri);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/GetNewsSerialaized", ReplyAction="http://tempuri.org/IServiceNews/GetNewsSerialaizedResponse")]
-        string GetNewsSerialaized(string url);
+        string GetNewsSerialaized(System.Uri uri);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/GetNewsSerialaized", ReplyAction="http://tempuri.org/IServiceNews/GetNewsSerialaizedResponse")]
-        System.Threading.Tasks.Task<string> GetNewsSerialaizedAsync(string url);
+        System.Threading.Tasks.Task<string> GetNewsSerialaizedAsync(System.Uri uri);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceNews/SendEmail", ReplyAction="http://tempuri.org/IServiceNews/SendEmailResponse")]
         void SendEmail(lab1.ServiceNews.News article, string receiversAddress);
@@ -156,20 +156,20 @@ namespace lab1.ServiceNews {
                 base(binding, remoteAddress) {
         }
         
-        public lab1.ServiceNews.News[] GetNews(string url) {
-            return base.Channel.GetNews(url);
+        public lab1.ServiceNews.News[] GetNews(System.Uri uri) {
+            return base.Channel.GetNews(uri);
         }
         
-        public System.Threading.Tasks.Task<lab1.ServiceNews.News[]> GetNewsAsync(string url) {
-            return base.Channel.GetNewsAsync(url);
+        public System.Threading.Tasks.Task<lab1.ServiceNews.News[]> GetNewsAsync(System.Uri uri) {
+            return base.Channel.GetNewsAsync(uri);
         }
         
-        public string GetNewsSerialaized(string url) {
-            return base.Channel.GetNewsSerialaized(url);
+        public string GetNewsSerialaized(System.Uri uri) {
+            return base.Channel.GetNewsSerialaized(uri);
         }
         
-        public System.Threading.Tasks.Task<string> GetNewsSerialaizedAsync(string url) {
-            return base.Channel.GetNewsSerialaizedAsync(url);
+        public System.Threading.Tasks.Task<string> GetNewsSerialaizedAsync(System.Uri uri) {
+            return base.Channel.GetNewsSerialaizedAsync(uri);
         }
         
         public void SendEmail(lab1.ServiceNews.News article, string receiversAddress) {

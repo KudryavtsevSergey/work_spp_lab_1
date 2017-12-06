@@ -29,9 +29,9 @@ namespace NewsService
             return instance;
         }
 
-        public List<News> GetNews(string url)
+        public List<News> GetNews(Uri uri)
         {
-            this.GetXmlNews(url);
+            this.GetXmlNews(uri);
             this.ReadXml();
             if (this.articles == null)
             {
@@ -40,11 +40,11 @@ namespace NewsService
             return this.articles;
         }
 
-        private void GetXmlNews(string url)
+        private void GetXmlNews(Uri uri)
         {
             try
             {
-                WebRequest wr = WebRequest.Create(url);
+                WebRequest wr = WebRequest.Create(uri);
                 wr.Proxy.Credentials = CredentialCache.DefaultCredentials;
                 XmlTextReader xtr = new XmlTextReader(wr.GetResponse().GetResponseStream());
                 XmlDocument doc = new XmlDocument();
@@ -99,11 +99,11 @@ namespace NewsService
             }
         }
 
-        public string GetNewsSerialaized(string url)
+        public string GetNewsSerialaized(Uri uri)
         {
             try
             {
-                GetNews(url);
+                GetNews(uri);
                 string resultStr = null;
                 using (var output = new StringWriter())
                 {

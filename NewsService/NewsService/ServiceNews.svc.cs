@@ -9,11 +9,11 @@ namespace NewsService
     {
         NewsRecipient NewsRecipient = NewsRecipient.GetInstance();
 
-        public List<News> GetNews(string url)
+        public List<News> GetNews(Uri uri)
         {
             try
             {
-                return NewsRecipient.GetNews(url);
+                return NewsRecipient.GetNews(uri);
             }
             catch (Exception ex)
             {
@@ -21,11 +21,11 @@ namespace NewsService
             }
         }
 
-        public string GetNewsSerialaized(string url)
+        public string GetNewsSerialaized(Uri uri)
         {
             try
             {
-                return NewsRecipient.GetNewsSerialaized(url);
+                return NewsRecipient.GetNewsSerialaized(uri);
             }
             catch (Exception ex)
             {

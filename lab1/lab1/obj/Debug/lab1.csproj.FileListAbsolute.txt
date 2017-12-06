@@ -11,10 +11,16 @@ e:\Работы\СПП\lab1\lab1\obj\Debug\lab1.FormNewsPortal.resources
 e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\lab1.exe.config
 e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\lab1.exe
 e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\lab1.pdb
-e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.csprojResolveAssemblyReference.cache
 e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.FormNewsPortal.resources
 e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.Properties.Resources.resources
 e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.csproj.GenerateResource.Cache
 e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.csproj.CoreCompileInputs.cache
 e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.exe
 e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.pdb
+e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Castle.Core.dll
+e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Moq.dll
+e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Castle.Core.xml
+e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Moq.pdb
+e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Moq.xml
+e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll

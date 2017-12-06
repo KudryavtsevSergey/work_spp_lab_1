@@ -11,10 +11,10 @@ namespace NewsService
     public interface IServiceNews
     {
         [OperationContract]
-        List<News> GetNews(string url);
+        List<News> GetNews(Uri uri);
 
         [OperationContract]
-        string GetNewsSerialaized(string url);
+        string GetNewsSerialaized(Uri uri);
 
         [OperationContract]
         void SendEmail(News article, string receiversAddress);
