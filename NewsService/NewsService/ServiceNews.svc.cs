@@ -9,7 +9,7 @@ namespace NewsService
     {
         NewsRecipient NewsRecipient = NewsRecipient.GetInstance();
 
-        public List<News> GetNews(Uri uri)
+        public List<INews> GetNews(Uri uri)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace NewsService
             }
         }
 
-        public async void SendEmail(News article, string receiversAddress)
+        public async void SendEmail(INews article, string receiversAddress)
         {
             try
             {

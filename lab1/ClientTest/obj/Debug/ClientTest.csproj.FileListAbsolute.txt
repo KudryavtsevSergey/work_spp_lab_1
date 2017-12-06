@@ -15,7 +15,5 @@ E:\Работы\СПП\lab1\lab1\ClientTest\obj\Debug\ClientTest.csproj.CoreComp
 E:\Работы\СПП\lab1\lab1\ClientTest\obj\Debug\ClientTest.dll
 E:\Работы\СПП\lab1\lab1\ClientTest\obj\Debug\ClientTest.pdb
 E:\Работы\СПП\lab1\lab1\ClientTest\bin\Debug\lab1.exe
-E:\Работы\СПП\lab1\lab1\ClientTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 E:\Работы\СПП\lab1\lab1\ClientTest\bin\Debug\lab1.pdb
 E:\Работы\СПП\lab1\lab1\ClientTest\bin\Debug\lab1.exe.config
-E:\Работы\СПП\lab1\lab1\ClientTest\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll

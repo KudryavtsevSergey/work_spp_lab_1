@@ -11,16 +11,17 @@ namespace lab1
 {
     public class Client : IClient
     {
-        private static ServiceNewsClient client = new ServiceNewsClient();
-        private News[] listNewsRecieve;
+        private IServiceNews client;
+        private INews[] listNewsRecieve;
         private Uri uri;
 
-        public Client(string uri)
+        public Client(IServiceNews client, string uri)
         {
+            this.client = client;
             this.uri = new Uri(uri);
         }
 
-        public News[] GetNews(bool serialize)
+        public INews[] GetNews(bool serialize)
         {
             try
             {
@@ -58,11 +59,6 @@ namespace lab1
         {
             News news = GetArticle(index);
             client.SendEmailAsync(news, email);
-        }
-
-        public void Close()
-        {
-            client.Close();
         }
     }
 }

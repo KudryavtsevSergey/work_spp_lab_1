@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace lab1
 {
-    interface IClient
+    public interface IClient
     {
         News[] GetNews(bool serialize);
         News GetArticle(int index);
         void SendEmail(int index, string email);
-        void Close();
     }
 }

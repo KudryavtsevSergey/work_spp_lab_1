@@ -12,6 +12,7 @@ namespace lab1
     public partial class FormNewsPortal : Form
     {
         IClient client;
+        IServiceNews serviceClient = new ServiceNewsClient();
 
         public FormNewsPortal()
         {
@@ -20,7 +21,7 @@ namespace lab1
             Type type = listNews.GetType();
             PropertyInfo propertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance);
             propertyInfo.SetValue(listNews, true, null);
-            client = new Client("https://news.tut.by/rss/index.rss");
+            client = new Client(serviceClient, "https://news.tut.by/rss/index.rss");
             GetNews(true);
         }
         private void timer_TickAsync(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace lab1
 
         private async void GetNews(bool serialize)
         {
-            Func<bool, News[]> a = (serializeFlag) =>
+            Func<bool, INews[]> a = (serializeFlag) =>
             {
                 try
                 {
@@ -83,7 +84,6 @@ namespace lab1
 
         private void FormNewsPortal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            client.Close();
             timer.Stop();
         }
     }

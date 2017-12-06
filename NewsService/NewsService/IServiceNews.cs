@@ -11,18 +11,18 @@ namespace NewsService
     public interface IServiceNews
     {
         [OperationContract]
-        List<News> GetNews(Uri uri);
+        List<INews> GetNews(Uri uri);
 
         [OperationContract]
         string GetNewsSerialaized(Uri uri);
 
         [OperationContract]
-        void SendEmail(News article, string receiversAddress);
+        void SendEmail(INews article, string receiversAddress);
     }
 
     [Serializable]
     [DataContract]
-    public class News
+    public class News : INews
     {
         private string title;
         private string link;

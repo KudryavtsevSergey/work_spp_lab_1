@@ -9,7 +9,7 @@ namespace NewsService
 {
     public class NewsRecipient
     {
-        public List<News> articles = new List<News>();
+        public List<INews> articles = new List<INews>();
         private XmlNodeList nodeList;
         private static NewsRecipient instance;
 
@@ -29,7 +29,7 @@ namespace NewsService
             return instance;
         }
 
-        public List<News> GetNews(Uri uri)
+        public List<INews> GetNews(Uri uri)
         {
             this.GetXmlNews(uri);
             this.ReadXml();

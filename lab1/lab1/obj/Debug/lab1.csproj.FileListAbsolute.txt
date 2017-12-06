@@ -24,3 +24,4 @@ e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Castle.Core.xml
 e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Moq.pdb
 e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\Moq.xml
 e:\Работы\СПП\lab1\lab1\lab1\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+e:\Работы\СПП\lab1\lab1\lab1\obj\Debug\lab1.csprojResolveAssemblyReference.cache

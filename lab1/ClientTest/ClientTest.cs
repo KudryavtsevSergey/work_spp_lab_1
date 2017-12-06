@@ -1,13 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lab1;
+using Moq;
+using lab1.ServiceNews;
 
 namespace ClientTest
 {
     [TestClass]
     public class ClientTest
     {
-
+        /*
         [TestMethod]
         public void Client_CreateNewClient_CreatedNewClient()
         {
@@ -53,6 +55,13 @@ namespace ClientTest
             {
                 Assert.AreEqual(expected, ex.Message);
             }
+        }*/
+
+        [TestMethod]
+        public void Client_ClientGetNews_GetNews()
+        {
+            var mockService= new Mock<IServiceNews>();
+            mockService.Setup(s => s.GetNews(It.IsAny<Uri>()));
         }
     }
 }
